@@ -4,12 +4,12 @@ import com.exam.dao.UserDao;
 import com.exam.dao.UserDaoImpl;
 import com.exam.model.User;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
@@ -25,16 +25,20 @@ public class LoginServlet extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
-        System.out.println("EMAIL SAISI: " + email);
-        System.out.println("PASSWORD SAISI: " + password);
 
+
+
+        System.out.println("EMAIL SAISI: [" + email + "]");
+        System.out.println("PASSWORD SAISI: [" + password + "]");
         User user = userDao.findByEmail(email);
-
         System.out.println("USER TROUVE: " + user);
 
         if (user != null) {
-            System.out.println("PASSWORD EN BASE: " + user.getPassword());
+            System.out.println("PASSWORD EN BASE: [" + user.getPassword() + "]");
         }
+
+
+
 
         if (user != null && user.getPassword().equals(password)) {
 
@@ -42,7 +46,8 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("user", user);
 
             if ("ADMIN".equals(user.getRole())) {
-                response.sendRedirect(request.getContextPath() + "/admin.jsp");
+                response.sendRedirect(request.getContextPath() + "/admin");
+
             } else {
                 response.sendRedirect(request.getContextPath() + "/student.jsp");
             }

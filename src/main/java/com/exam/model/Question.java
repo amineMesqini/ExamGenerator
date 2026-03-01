@@ -3,49 +3,73 @@ package com.exam.model;
 public class Question {
 
     private int id;
+    private int examId;
     private String contenu;
-    private String choixA;
-    private String choixB;
-    private String choixC;
-    private String choixD;
-    private String bonneReponse; // A, B, C ou D
-    private int examId; // lien vers Exam
+    private String typeQuestion; // QCM, TEXTE_A_TROUS, COURTE_REPONSE
+    private float points;
+    private Integer ordre;
 
-    public Question() {}
+    public Question() {
+    }
 
-    public Question(int id, String contenu, String choixA, String choixB,
-                    String choixC, String choixD, String bonneReponse, int examId) {
-        this.id = id;
+    public Question(int examId, String contenu,
+                    String typeQuestion, float points, Integer ordre) {
+        this.examId = examId;
         this.contenu = contenu;
-        this.choixA = choixA;
-        this.choixB = choixB;
-        this.choixC = choixC;
-        this.choixD = choixD;
-        this.bonneReponse = bonneReponse;
+        this.typeQuestion = typeQuestion;
+        this.points = points;
+        this.ordre = ordre;
+    }
+
+    // ===== GETTERS =====
+
+    public int getId() {
+        return id;
+    }
+
+    public int getExamId() {
+        return examId;
+    }
+
+    public String getContenu() {
+        return contenu;
+    }
+
+    public String getTypeQuestion() {
+        return typeQuestion;
+    }
+
+    public float getPoints() {
+        return points;
+    }
+
+    public Integer getOrdre() {
+        return ordre;
+    }
+
+    // ===== SETTERS =====
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setExamId(int examId) {
         this.examId = examId;
     }
 
-    public int getId() { return id; }
-    public void setId(int id) { this.id = id; }
+    public void setContenu(String contenu) {
+        this.contenu = contenu;
+    }
 
-    public String getContenu() { return contenu; }
-    public void setContenu(String contenu) { this.contenu = contenu; }
+    public void setTypeQuestion(String typeQuestion) {
+        this.typeQuestion = typeQuestion;
+    }
 
-    public String getChoixA() { return choixA; }
-    public void setChoixA(String choixA) { this.choixA = choixA; }
+    public void setPoints(float points) {
+        this.points = points;
+    }
 
-    public String getChoixB() { return choixB; }
-    public void setChoixB(String choixB) { this.choixB = choixB; }
-
-    public String getChoixC() { return choixC; }
-    public void setChoixC(String choixC) { this.choixC = choixC; }
-
-    public String getChoixD() { return choixD; }
-    public void setChoixD(String choixD) { this.choixD = choixD; }
-
-    public String getBonneReponse() { return bonneReponse; }
-    public void setBonneReponse(String bonneReponse) { this.bonneReponse = bonneReponse; }
-
-    public int getExamId() { return examId; }
-    public void setExamId(int examId) { this.examId = examId; }
+    public void setOrdre(Integer ordre) {
+        this.ordre = ordre;
+    }
 }

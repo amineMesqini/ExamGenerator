@@ -1,30 +1,63 @@
 package com.exam.model;
 
+import java.time.LocalDateTime;
+
 public class Exam {
 
     private int id;
     private String titre;
     private String description;
-    private int duree; // en minutes
+    private int dureeMinutes;
+    private LocalDateTime dateDebut;
+    private boolean isActive;
+    private Integer adminId;
 
     public Exam() {}
 
-    public Exam(int id, String titre, String description, int duree) {
-        this.id = id;
+    public Exam(String titre, String description, int dureeMinutes) {
         this.titre = titre;
         this.description = description;
-        this.duree = duree;
+        this.dureeMinutes = dureeMinutes;
+        this.isActive = false;
     }
 
-    public int getId() { return id; }
-    public void setId(int id) { this.id = id; }
-
     public String getTitre() { return titre; }
-    public void setTitre(String titre) { this.titre = titre; }
-
     public String getDescription() { return description; }
-    public void setDescription(String description) { this.description = description; }
+    public int getDureeMinutes() { return dureeMinutes; }
 
-    public int getDuree() { return duree; }
-    public void setDuree(int duree) { this.duree = duree; }
+    public void setTitre(String titre) { this.titre = titre; }
+    public void setDescription(String description) { this.description = description; }
+    public void setDureeMinutes(int dureeMinutes) { this.dureeMinutes = dureeMinutes; }
+
+    public Integer getAdminId() {
+        return adminId;
+    }
+
+    public void setAdminId(Integer adminId) {
+        this.adminId = adminId;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
+
+    public LocalDateTime getDateDebut() {
+        return dateDebut;
+    }
+
+    public void setDateDebut(LocalDateTime dateDebut) {
+        this.dateDebut = dateDebut;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }
