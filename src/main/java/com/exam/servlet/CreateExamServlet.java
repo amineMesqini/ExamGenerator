@@ -28,7 +28,7 @@ public class CreateExamServlet extends HttpServlet {
 
         examDao.save(exam);
 
-        response.sendRedirect(request.getContextPath() + "/admin.jsp");
+        response.sendRedirect(request.getContextPath() + "/admin");
     }
 }
 
