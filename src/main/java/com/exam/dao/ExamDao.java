@@ -10,5 +10,6 @@ public interface ExamDao {
     List<Exam> findAll();
     Exam findById(int id);
     void toggleActive(int examId, boolean active);
+    void delete(int examId);
 
 }

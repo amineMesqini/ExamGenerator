@@ -21,6 +21,8 @@ public class Exam {
         this.isActive = false;
     }
 
+
+
     public String getTitre() { return titre; }
     public String getDescription() { return description; }
     public int getDureeMinutes() { return dureeMinutes; }
