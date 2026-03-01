@@ -76,6 +76,7 @@ public class ExamDaoImpl implements ExamDao {
                 exam.setTitre(rs.getString("titre"));
                 exam.setDescription(rs.getString("description"));
                 exam.setDureeMinutes(rs.getInt("duree_minutes"));
+                exam.setActive(rs.getBoolean("is_active"));
             }
 
         } catch (Exception e) {
@@ -83,6 +84,24 @@ public class ExamDaoImpl implements ExamDao {
         }
 
         return exam;
+    }
+    @Override
+    public void toggleActive(int examId, boolean active) {
+
+        String sql = "UPDATE exams SET is_active = ? WHERE id = ?";
+
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setBoolean(1, active);
+            stmt.setInt(2, examId);
+
+
+            stmt.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }

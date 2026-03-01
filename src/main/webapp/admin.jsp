@@ -31,12 +31,26 @@
             color: white;
             border-radius: 4px;
             font-size: 14px;
+            margin-right: 5px;
         }
         .btn-secondary {
             background: #28a745;
         }
         .btn-danger {
             background: #dc3545;
+        }
+        .btn-warning {
+            background: #ffc107;
+            color: black;
+        }
+        .status {
+            font-weight: bold;
+        }
+        .active {
+            color: green;
+        }
+        .inactive {
+            color: red;
         }
     </style>
 </head>
@@ -50,7 +64,7 @@
 
     <!-- Bouton créer exam -->
     <a class="btn btn-secondary"
-       href="${pageContext.request.contextPath}/views/create_exam.jsp">
+       href="<%= request.getContextPath() %>/views/create_exam.jsp">
         ➕ Créer un nouvel examen
     </a>
 
@@ -59,8 +73,6 @@
     <h3>📋 Liste des Examens</h3>
 
     <%
-
-
         List<Exam> exams = (List<Exam>) request.getAttribute("exams");
 
         if (exams == null || exams.isEmpty()) {
@@ -72,14 +84,51 @@
     %>
 
     <div class="exam">
+
         <h4><%= exam.getTitre() %></h4>
 
         <p><b>Description :</b> <%= exam.getDescription() %></p>
         <p><b>Durée :</b> <%= exam.getDureeMinutes() %> minutes</p>
 
+        <p class="status">
+            Statut :
+            <% if (exam.isActive()) { %>
+            <span class="active">ACTIF</span>
+            <% } else { %>
+            <span class="inactive">INACTIF</span>
+            <% } %>
+        </p>
+
+        <!-- Voir détails -->
         <a class="btn"
-           href="${pageContext.request.contextPath}/views/add_question.jsp?examId=<%= exam.getId() %>">
+           href="<%= request.getContextPath() %>/examDetails?examId=<%= exam.getId() %>">
+            📄 Voir Détails
+        </a>
+
+        <!-- Ajouter question -->
+        <a class="btn btn-secondary"
+           href="<%= request.getContextPath() %>/views/add_question.jsp?examId=<%= exam.getId() %>">
             ➕ Ajouter Question
+        </a>
+
+        <!-- Activer / Désactiver -->
+        <% if (exam.isActive()) { %>
+        <a class="btn btn-warning"
+           href="<%= request.getContextPath() %>/toggleExam?examId=<%= exam.getId() %>&active=false">
+            Désactiver
+        </a>
+        <% } else { %>
+        <a class="btn btn-warning"
+           href="<%= request.getContextPath() %>/toggleExam?examId=<%= exam.getId() %>&active=true">
+            Activer
+        </a>
+        <% } %>
+
+        <!-- Supprimer (à implémenter si pas encore fait) -->
+        <a class="btn btn-danger"
+           href="<%= request.getContextPath() %>/deleteExam?examId=<%= exam.getId() %>"
+           onclick="return confirm('Confirmer la suppression ?')">
+            🗑 Supprimer
         </a>
 
     </div>

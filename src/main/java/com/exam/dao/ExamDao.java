@@ -9,5 +9,6 @@ public interface ExamDao {
     void save(Exam exam);
     List<Exam> findAll();
     Exam findById(int id);
+    void toggleActive(int examId, boolean active);
 
 }
