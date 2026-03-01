@@ -8,5 +8,6 @@ public interface QuestionDao {
 
     int save(Question question);
     List<Question> findByExamId(int examId);
+    void delete(int questionId);
 
 }

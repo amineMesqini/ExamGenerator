@@ -40,14 +40,17 @@ public class ExamDaoImpl implements ExamDao {
             while (rs.next()) {
 
                 Exam exam = new Exam();
-
                 exam.setId(rs.getInt("id"));
                 exam.setTitre(rs.getString("titre"));
                 exam.setDescription(rs.getString("description"));
                 exam.setDureeMinutes(rs.getInt("duree_minutes"));
 
+                // 🔥 LIGNE MANQUANTE
+                exam.setActive(rs.getBoolean("is_active"));
+
                 exams.add(exam);
             }
+
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -97,6 +100,21 @@ public class ExamDaoImpl implements ExamDao {
             stmt.setInt(2, examId);
 
 
+            stmt.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    @Override
+    public void delete(int examId) {
+
+        String sql = "DELETE FROM exams WHERE id = ?";
+
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, examId);
             stmt.executeUpdate();
 
         } catch (Exception e) {

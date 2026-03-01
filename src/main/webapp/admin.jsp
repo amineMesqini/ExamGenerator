@@ -122,6 +122,10 @@
            href="<%= request.getContextPath() %>/toggleExam?examId=<%= exam.getId() %>&active=true">
             Activer
         </a>
+        <a class="btn"
+           href="<%= request.getContextPath() %>/results?examId=<%= exam.getId() %>">
+            📊 Voir Résultats
+        </a>
         <% } %>
 
         <!-- Supprimer (à implémenter si pas encore fait) -->

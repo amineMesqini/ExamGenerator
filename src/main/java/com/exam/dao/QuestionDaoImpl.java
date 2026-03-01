@@ -80,5 +80,20 @@ public class QuestionDaoImpl implements QuestionDao {
 
         return questions;
     }
+    @Override
+    public void delete(int questionId) {
+
+        String sql = "DELETE FROM questions WHERE id = ?";
+
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, questionId);
+            stmt.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 }

@@ -36,7 +36,14 @@
   <p><b><%= q.getContenu() %></b></p>
   <p>Type : <%= q.getTypeQuestion() %></p>
   <p>Points : <%= q.getPoints() %></p>
+
+  <a style="color:red;"
+     href="<%= request.getContextPath() %>/deleteQuestion?questionId=<%= q.getId() %>&examId=<%= exam.getId() %>"
+     onclick="return confirm('Supprimer cette question ?')">
+    🗑 Supprimer
+  </a>
 </div>
+<hr>
 <hr>
 
 <%     }
